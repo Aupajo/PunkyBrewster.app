@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  Punky Brewster
-//
-//  Created by Pete Nicholls on 22/04/15.
-//  Copyright (c) 2015 Pete Nicholls. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
