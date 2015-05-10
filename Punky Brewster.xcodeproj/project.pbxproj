@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C115688E1AF62B6D00C3BE57 /* StoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */; };
+		C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115688F1AF62BDF00C3BE57 /* MapKit.framework */; };
 		C12FE93C1AEE21DA00C495C3 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12FE93B1AEE21DA00C495C3 /* Beer.swift */; };
 		C12FE93E1AEE235A00C495C3 /* BeerListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12FE93D1AEE235A00C495C3 /* BeerListTableViewController.swift */; };
 		C12FE9401AEE296800C495C3 /* BeerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12FE93F1AEE296800C495C3 /* BeerTableViewCell.swift */; };
@@ -16,6 +18,8 @@
 		C146D92E1AE7284B006B9A05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C146D92D1AE7284B006B9A05 /* Images.xcassets */; };
 		C146D9311AE7284B006B9A05 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C146D92F1AE7284B006B9A05 /* LaunchScreen.xib */; };
 		C146D93D1AE7284B006B9A05 /* Punky_BrewsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */; };
+		C19B93081AFEEDF300053203 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93071AFEEDF300053203 /* Store.swift */; };
+		C19B930A1AFF01FE00053203 /* StoreMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +34,8 @@
 
 /* Begin PBXFileReference section */
 		C115688C1AF6261300C3BE57 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoViewController.swift; sourceTree = "<group>"; };
+		C115688F1AF62BDF00C3BE57 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C12FE93B1AEE21DA00C495C3 /* Beer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beer.swift; sourceTree = "<group>"; };
 		C12FE93D1AEE235A00C495C3 /* BeerListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerListTableViewController.swift; sourceTree = "<group>"; };
 		C12FE93F1AEE296800C495C3 /* BeerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeerTableViewCell.swift; sourceTree = "<group>"; };
@@ -43,6 +49,8 @@
 		C146D9361AE7284B006B9A05 /* Punky BrewsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Punky BrewsterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C146D93B1AE7284B006B9A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punky_BrewsterTests.swift; sourceTree = "<group>"; };
+		C19B93071AFEEDF300053203 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +75,7 @@
 		C146D9181AE7284B006B9A05 = {
 			isa = PBXGroup;
 			children = (
+				C115688F1AF62BDF00C3BE57 /* MapKit.framework */,
 				C115688C1AF6261300C3BE57 /* README.md */,
 				C146D9231AE7284B006B9A05 /* Punky Brewster */,
 				C146D9391AE7284B006B9A05 /* Punky BrewsterTests */,
@@ -94,6 +104,9 @@
 				C12FE93D1AEE235A00C495C3 /* BeerListTableViewController.swift */,
 				C12FE93F1AEE296800C495C3 /* BeerTableViewCell.swift */,
 				C12FE9411AEE335700C495C3 /* BeerListRequest.swift */,
+				C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */,
+				C19B93071AFEEDF300053203 /* Store.swift */,
+				C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */,
 			);
 			path = "Punky Brewster";
 			sourceTree = "<group>";
@@ -224,6 +237,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C19B93081AFEEDF300053203 /* Store.swift in Sources */,
+				C19B930A1AFF01FE00053203 /* StoreMapAnnotation.swift in Sources */,
+				C115688E1AF62B6D00C3BE57 /* StoreInfoViewController.swift in Sources */,
 				C12FE93C1AEE21DA00C495C3 /* Beer.swift in Sources */,
 				C12FE93E1AEE235A00C495C3 /* BeerListTableViewController.swift in Sources */,
 				C12FE9421AEE335700C495C3 /* BeerListRequest.swift in Sources */,

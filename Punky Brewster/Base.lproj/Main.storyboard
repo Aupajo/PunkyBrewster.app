@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="JZX-E6-ejN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="XNq-k1-p2g">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Navigation Controller-->
+        <!--What's Pouring-->
         <scene sceneID="88C-E2-UfH">
             <objects>
                 <navigationController id="JZX-E6-ejN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="What's Pouring" id="Pyd-7c-FyF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NFU-8r-Tri">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -19,7 +20,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nnH-A3-mgY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-924" y="-322"/>
+            <point key="canvasLocation" x="-480" y="698"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="jcc-ci-88v">
+            <objects>
+                <tabBarController id="XNq-k1-p2g" sceneMemberID="viewController">
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="Hui-8c-qaD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="JZX-E6-ejN" kind="relationship" relationship="viewControllers" id="9M6-Vw-JQZ"/>
+                        <segue destination="zSJ-2e-Khf" kind="relationship" relationship="viewControllers" id="a3j-bh-P2Q"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4iP-vO-tq1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1252" y="704"/>
         </scene>
         <!--What's Pouring-->
         <scene sceneID="kU9-pU-a41">
@@ -124,7 +144,43 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l9C-MH-jzQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-131" y="-322"/>
+            <point key="canvasLocation" x="313" y="698"/>
+        </scene>
+        <!--Store Info-->
+        <scene sceneID="Ofc-1k-vu3">
+            <objects>
+                <viewController id="zSJ-2e-Khf" customClass="StoreInfoViewController" customModule="Punky_Brewster" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="aaf-an-8jT"/>
+                        <viewControllerLayoutGuide type="bottom" id="uv2-w5-1Ro"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vr7-6c-AJD">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zWd-gz-Py4">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="551"/>
+                                <connections>
+                                    <outlet property="delegate" destination="zSJ-2e-Khf" id="3x4-K2-m0c"/>
+                                </connections>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zWd-gz-Py4" secondAttribute="trailing" id="0x2-cD-O9O"/>
+                            <constraint firstItem="zWd-gz-Py4" firstAttribute="leading" secondItem="vr7-6c-AJD" secondAttribute="leading" id="KIf-L4-rW1"/>
+                            <constraint firstItem="uv2-w5-1Ro" firstAttribute="top" secondItem="zWd-gz-Py4" secondAttribute="bottom" id="dmB-Op-1XS"/>
+                            <constraint firstItem="zWd-gz-Py4" firstAttribute="top" secondItem="vr7-6c-AJD" secondAttribute="top" id="yoB-n5-7zK"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Store Info" id="kb8-ml-PIO"/>
+                    <connections>
+                        <outlet property="mapView" destination="zWd-gz-Py4" id="XWY-kh-m0f"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3sL-uq-cJE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-480" y="1443"/>
         </scene>
     </scenes>
 </document>
