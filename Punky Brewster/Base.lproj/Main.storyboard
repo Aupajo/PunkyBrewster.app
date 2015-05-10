@@ -9,7 +9,7 @@
         <scene sceneID="88C-E2-UfH">
             <objects>
                 <navigationController id="JZX-E6-ejN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="What's Pouring" id="Pyd-7c-FyF"/>
+                    <tabBarItem key="tabBarItem" title="What's Pouring" image="Beer" id="Pyd-7c-FyF"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NFU-8r-Tri">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -173,7 +173,7 @@
                             <constraint firstItem="zWd-gz-Py4" firstAttribute="top" secondItem="vr7-6c-AJD" secondAttribute="top" id="yoB-n5-7zK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Store Info" id="kb8-ml-PIO"/>
+                    <tabBarItem key="tabBarItem" title="Store Info" image="Map" id="kb8-ml-PIO"/>
                     <connections>
                         <outlet property="mapView" destination="zWd-gz-Py4" id="XWY-kh-m0f"/>
                     </connections>
@@ -183,4 +183,8 @@
             <point key="canvasLocation" x="-480" y="1443"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Beer" width="22" height="27"/>
+        <image name="Map" width="26" height="21"/>
+    </resources>
 </document>

@@ -3,7 +3,7 @@ import MapKit
 
 class StoreInfoViewController: UIViewController, MKMapViewDelegate {
     let store: Store = Store()
-    let regionRadius: CLLocationDistance = 1000
+    let regionRadius: CLLocationDistance = 2000
     
     @IBOutlet weak var mapView: MKMapView!
     
