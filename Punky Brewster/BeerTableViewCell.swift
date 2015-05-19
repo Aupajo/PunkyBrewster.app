@@ -1,4 +1,5 @@
 import UIKit
+import SDWebImage
 
 class BeerTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
@@ -13,15 +14,6 @@ class BeerTableViewCell: UITableViewCell {
         nameLabel.text = beer.name!
         abvLabel.text = "\(beer.abv!)%"
         pricePerLitreLabel.text = "\(currencyFormatter.stringFromNumber(beer.pricePerLitre!)!)/L"
-        photoView.image = nil
-        
-        dispatch_async(dispatch_get_global_queue(QOS_CLASS_DEFAULT, 0), {
-            if let imageData = NSData(contentsOfURL: beer.imageURL!) {
-                dispatch_async(dispatch_get_main_queue(), {
-                    self.photoView.image = UIImage(data: imageData)
-                })
-            }
-        })
-
+        photoView.sd_setImageWithURL(beer.imageURL)
     }
 }
