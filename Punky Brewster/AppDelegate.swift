@@ -7,8 +7,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        // Appearance customisation
+        let navBarAppearance = UINavigationBar.appearance()
+        navBarAppearance.barStyle = .Black
+        navBarAppearance.barTintColor = .blackColor()
+        navBarAppearance.titleTextAttributes = [NSFontAttributeName: defaultFontWithSize(20)]
+        
+        let tabBarAppearance = UITabBar.appearance()
+        tabBarAppearance.barStyle = .Black
+        tabBarAppearance.barTintColor = .blackColor()
+        tabBarAppearance.tintColor = .whiteColor()
+        
+        let tabBarItemAppearance = UITabBarItem.appearance()
+        tabBarItemAppearance.setTitleTextAttributes([NSFontAttributeName: defaultFontWithSize(11)], forState: UIControlState.Normal)
+        
+        let uiLabelAppearance = UILabel.appearance()
+        uiLabelAppearance.font = defaultFontWithSize(18)
+        
         return true
+    }
+    
+    func defaultFontWithSize(size: CGFloat) -> UIFont {
+        let fontDescriptor = UIFontDescriptor(name: "DIN Condensed", size: size)
+        return UIFont(descriptor: fontDescriptor, size: size)
     }
 
     func applicationWillResignActive(application: UIApplication) {
