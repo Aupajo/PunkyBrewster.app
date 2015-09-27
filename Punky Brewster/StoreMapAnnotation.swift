@@ -12,11 +12,11 @@ class StoreMapAnnotation: NSObject, MKAnnotation {
         return store.coordinate
     }
     
-    var title:String {
+    var title:String? {
         return store.name
     }
     
-    var subtitle:String {
+    var subtitle:String? {
         return store.address
     }
 }

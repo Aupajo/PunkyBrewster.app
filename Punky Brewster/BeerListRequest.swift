@@ -1,7 +1,7 @@
 import Foundation
 
 class BeerListRequest {
-    let URL = NSURL(string: "http://punkybrewster.petenicholls.com/beers.json")!
+    let URL = NSURL(string: "https://pbandjson.herokuapp.com/beers.json")!
     
     func perform(callback:(list:[Beer], error:NSError?) -> Void) {
         var retrieved:[Beer] = []
@@ -15,24 +15,31 @@ class BeerListRequest {
             }
             
             var parseError: NSError? = nil
-            let jsonObject:AnyObject? = NSJSONSerialization.JSONObjectWithData(data,
-                options: NSJSONReadingOptions(0),
-                error: &parseError)
+            let jsonObject:AnyObject?
+            do {
+                jsonObject = try NSJSONSerialization.JSONObjectWithData(data!,
+                                options: NSJSONReadingOptions(rawValue: 0))
+            } catch let error as NSError {
+                parseError = error
+                jsonObject = nil
+            } catch {
+                fatalError()
+            }
             
             if parseError != nil {
-                println("JSON Error: \(parseError)")
+                print("JSON Error: \(parseError)")
                 callback(list: [], error: error)
                 return
             }
             
-            println("\(jsonObject)")
+            print("\(jsonObject)")
             
             if let beers = jsonObject as? [[String:AnyObject]] {
                 for beerJSON in beers {
                     retrieved.append(Beer.fromJSON(beerJSON))
                 }
                 
-                retrieved.sort { $0.name < $1.name }
+                retrieved.sortInPlace { $0.name < $1.name }
                 
                 callback(list: retrieved, error: nil)
             }

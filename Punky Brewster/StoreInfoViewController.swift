@@ -24,6 +24,6 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate {
     
     func addStoreAnnotation() {
         mapView.addAnnotation(annotation)
-        mapView.selectAnnotation(mapView.annotations.first as! MKAnnotation, animated: false)
+        mapView.selectAnnotation(mapView.annotations.first!, animated: false)
     }
 }

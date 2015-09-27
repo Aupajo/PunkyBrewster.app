@@ -10,6 +10,7 @@ class BeerListTableViewController: UITableViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
+        tableView.tableFooterView = UIView(frame: CGRectZero)
         
         initActivityIndicator()
         refresh(nil)
@@ -26,7 +27,7 @@ class BeerListTableViewController: UITableViewController {
             (retrievedBeers:[Beer], error:NSError?) -> Void in
             
             if(error != nil) {
-                println("Error: \(error)")
+                print("Error: \(error)")
             } else {
                 self.beers = retrievedBeers
             }

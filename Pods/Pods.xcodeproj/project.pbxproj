@@ -341,6 +341,7 @@
 		92F6CF87A03A40A746A0D5BC /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftMigration = 0700;
 				LastUpgradeCheck = 0640;
 			};
 			buildConfigurationList = 3EA5C7E10ABFBF92241679C3 /* Build configuration list for PBXProject "Pods" */;
