@@ -20,7 +20,7 @@
 		C146D93D1AE7284B006B9A05 /* Punky_BrewsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */; };
 		C19B93081AFEEDF300053203 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93071AFEEDF300053203 /* Store.swift */; };
 		C19B930A1AFF01FE00053203 /* StoreMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */; };
-		E4C92B266E14CAB526868F86 /* Pods_Punky_Brewster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		E4C92B266E14CAB526868F86 /* Pods_Punky_Brewster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
