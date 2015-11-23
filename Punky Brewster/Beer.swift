@@ -16,8 +16,6 @@ class Beer: NSObject {
         imageURLComponents.scheme = "https"
         imageURLComponents.host = HTTPS_IMAGE_DOMAIN
         
-        print(String(imageURLComponents.URL))
-        
         beer.name = properties["name"] as? String
         beer.imageURL = imageURLComponents.URL
         beer.abv = properties["abv"] as? Float
