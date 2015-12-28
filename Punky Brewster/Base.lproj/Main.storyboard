@@ -42,10 +42,10 @@
             </objects>
             <point key="canvasLocation" x="-1252" y="704"/>
         </scene>
-        <!--View Controller-->
+        <!--Error View Controller-->
         <scene sceneID="Hm8-n3-hyN">
             <objects>
-                <viewController id="d98-m9-423" sceneMemberID="viewController">
+                <viewController id="d98-m9-423" customClass="ErrorViewController" customModule="Punky_Brewster" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Lo0-dY-Ahw"/>
                         <viewControllerLayoutGuide type="bottom" id="2l3-cW-Gcz"/>
@@ -54,24 +54,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Uh oh, something went wrong." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvr-N5-4oS">
-                                <rect key="frame" x="0.0" y="451" width="600" height="31"/>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ixJ-Af-433">
+                                <rect key="frame" x="274" y="327" width="52" height="52"/>
+                                <state key="normal" image="Retry"/>
+                                <connections>
+                                    <segue destination="CqB-6p-44N" kind="show" id="xQv-Rs-DtH"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whoops, that didn't quite go to plan." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kvr-N5-4oS">
+                                <rect key="frame" x="89" y="253.5" width="422" height="32.5"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                 <color key="textColor" red="1" green="0.40000000600000002" blue="0.40000000600000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Kvr-N5-4oS" firstAttribute="leading" secondItem="r0P-1x-3mU" secondAttribute="leadingMargin" constant="-20" id="HFu-fm-4dj"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Kvr-N5-4oS" secondAttribute="trailing" constant="-20" id="PxC-fp-Yz8"/>
-                            <constraint firstItem="2l3-cW-Gcz" firstAttribute="top" secondItem="Kvr-N5-4oS" secondAttribute="bottom" constant="69" id="yDq-GW-jEH"/>
+                            <constraint firstItem="Kvr-N5-4oS" firstAttribute="centerX" secondItem="r0P-1x-3mU" secondAttribute="centerX" id="DCi-le-rcc"/>
+                            <constraint firstItem="Kvr-N5-4oS" firstAttribute="centerY" secondItem="r0P-1x-3mU" secondAttribute="centerY" constant="-30.5" id="EU3-YZ-TCr"/>
+                            <constraint firstItem="ixJ-Af-433" firstAttribute="centerY" secondItem="r0P-1x-3mU" secondAttribute="centerY" constant="53" id="NQQ-nO-Nyk"/>
+                            <constraint firstItem="ixJ-Af-433" firstAttribute="centerX" secondItem="r0P-1x-3mU" secondAttribute="centerX" id="wUh-Wh-jDu"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8Kx-bt-M1D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1015" y="698"/>
+            <point key="canvasLocation" x="1050" y="692"/>
         </scene>
         <!--What's Pouring-->
         <scene sceneID="kU9-pU-a41">
@@ -83,7 +91,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="BeerCell" rowHeight="100" id="OJA-sD-QqT" customClass="BeerTableViewCell" customModule="Punky_Brewster" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="86" width="600" height="100"/>
+                                <rect key="frame" x="0.0" y="22" width="600" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OJA-sD-QqT" id="k4i-eE-YTc">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="99.5"/>
@@ -222,5 +230,9 @@
     <resources>
         <image name="Beer" width="22" height="27"/>
         <image name="Map" width="26" height="21"/>
+        <image name="Retry" width="52" height="52"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="xQv-Rs-DtH"/>
+    </inferredMetricsTieBreakers>
 </document>
