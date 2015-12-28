@@ -31,12 +31,12 @@ class BeerListRequest {
                 callback(list: [], error: error)
                 return
             }
-            
+
             print("\(jsonObject)")
             
             if let beers = jsonObject as? [[String:AnyObject]] {
                 for beerJSON in beers {
-                    retrieved.append(Beer.fromJSON(beerJSON))
+                    retrieved.append(Beer(json: beerJSON))
                 }
                 
                 retrieved.sortInPlace { $0.name < $1.name }
