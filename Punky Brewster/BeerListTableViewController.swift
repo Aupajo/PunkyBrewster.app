@@ -11,6 +11,10 @@ class BeerListTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
         tableView.tableFooterView = UIView(frame: CGRectZero)
+
+        if let savedBeers = getSavedBeers() {
+            self.beers = savedBeers
+        }
         
         initActivityIndicator()
         refresh(nil)
@@ -30,6 +34,7 @@ class BeerListTableViewController: UITableViewController {
                 print("Error: \(error)")
             } else {
                 self.beers = retrievedBeers
+                self.saveBeers()
             }
             
             dispatch_async(dispatch_get_main_queue(), {
@@ -70,4 +75,14 @@ class BeerListTableViewController: UITableViewController {
         view.addSubview(activityIndicator)
     }
 
+    private func saveBeers() {
+        let success = NSKeyedArchiver.archiveRootObject(self.beers, toFile: Beer.ArchiveURL.path!)
+        if !success {
+            print("Failed to save beers")
+        }
+    }
+
+    private func getSavedBeers() -> [Beer]? {
+       return NSKeyedUnarchiver.unarchiveObjectWithFile(Beer.ArchiveURL.path!) as? [Beer]
+    }
 }

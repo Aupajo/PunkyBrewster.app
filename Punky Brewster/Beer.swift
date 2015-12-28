@@ -8,6 +8,9 @@ class Beer: NSObject, NSCoding {
     var abv:Float?
     var pricePerLitre:Float?
 
+    static private let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("beers")
+
     init(name: String?, imageURL: NSURL?, abv: Float?, pricePerLitre: Float?) {
         self.name = name
         self.imageURL = imageURL
@@ -44,7 +47,7 @@ class Beer: NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: "name")
         aCoder.encodeObject(imageURL, forKey: "imageURL")
-        aCoder.encodeObject(abv, forKey: "abv")
-        aCoder.encodeObject(pricePerLitre, forKey: "pricePerLitre")
+        aCoder.encodeFloat(abv!, forKey: "abv")
+        aCoder.encodeFloat(pricePerLitre!, forKey: "pricePerLitre")
     }
 }
