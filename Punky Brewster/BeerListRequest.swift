@@ -8,12 +8,23 @@ class BeerListRequest {
         
         let task = NSURLSession.sharedSession().dataTaskWithURL(URL) {
             (data, response, error) in
-            
+ 
             if error != nil {
                 callback(list: [], error: error)
                 return
             }
+
+            let httpResponse = response as! NSHTTPURLResponse
+            let statusCode = httpResponse.statusCode
+
+            if statusCode != 200 {
+                callback(list: [], error: NSError(domain: "server", code: -1, userInfo: [
+                    "statusCode": statusCode,
+                    "response": httpResponse
+                ]))
+            }
             
+
             var parseError: NSError? = nil
             let jsonObject:AnyObject?
             do {
