@@ -25,21 +25,20 @@ class BeerListTableViewController: UITableViewController {
         let request = BeerListRequest()
         request.perform {
             (retrievedBeers:[Beer], error:NSError?) -> Void in
-            
-            if(error != nil) {
-                print("Error: \(error)")
-            } else {
-                self.beers = retrievedBeers
-            }
-            
+ 
             dispatch_async(dispatch_get_main_queue(), {
                 if sender != nil {
                     sender?.endRefreshing()
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
-
-                self.tableView.reloadData()
+ 
+                if error != nil {
+                    self.performSegueWithIdentifier("showError", sender: self)
+                } else {
+                    self.beers = retrievedBeers
+                    self.tableView.reloadData()
+                }
             })
         }
     }

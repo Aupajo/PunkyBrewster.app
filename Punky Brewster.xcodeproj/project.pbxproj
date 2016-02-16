@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		90B01FD01C1B7AD1004E81C6 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B01FCF1C1B7AD1004E81C6 /* ErrorViewController.swift */; };
 		C115688E1AF62B6D00C3BE57 /* StoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */; };
 		C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115688F1AF62BDF00C3BE57 /* MapKit.framework */; };
 		C12FE93C1AEE21DA00C495C3 /* Beer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C12FE93B1AEE21DA00C495C3 /* Beer.swift */; };
@@ -35,6 +36,7 @@
 
 /* Begin PBXFileReference section */
 		5A9BD15454A203213FAACCBC /* Pods-Punky Brewster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punky Brewster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster.debug.xcconfig"; sourceTree = "<group>"; };
+		90B01FCF1C1B7AD1004E81C6 /* ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
 		A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punky_Brewster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C115688C1AF6261300C3BE57 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoViewController.swift; sourceTree = "<group>"; };
@@ -129,6 +131,7 @@
 				C12FE93F1AEE296800C495C3 /* BeerTableViewCell.swift */,
 				C12FE9411AEE335700C495C3 /* BeerListRequest.swift */,
 				C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */,
+				90B01FCF1C1B7AD1004E81C6 /* ErrorViewController.swift */,
 				C19B93071AFEEDF300053203 /* Store.swift */,
 				C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */,
 			);
@@ -321,6 +324,7 @@
 				C12FE93E1AEE235A00C495C3 /* BeerListTableViewController.swift in Sources */,
 				C12FE9421AEE335700C495C3 /* BeerListRequest.swift in Sources */,
 				C146D9271AE7284B006B9A05 /* AppDelegate.swift in Sources */,
+				90B01FD01C1B7AD1004E81C6 /* ErrorViewController.swift in Sources */,
 				C12FE9401AEE296800C495C3 /* BeerTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
