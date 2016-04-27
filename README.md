@@ -14,3 +14,6 @@ Install dependencies with:
 
 Open `Punky Brewster.xcworkspace`.
 
+## Acknowledgements
+
+Special thanks to Luke McFarlane (@lukemcfarlane).
