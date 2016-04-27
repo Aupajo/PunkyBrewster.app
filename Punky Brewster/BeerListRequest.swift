@@ -38,12 +38,9 @@ class BeerListRequest {
             }
             
             if parseError != nil {
-                print("JSON Error: \(parseError)")
                 callback(list: [], error: error)
                 return
             }
-            
-            print("\(jsonObject)")
             
             if let beers = jsonObject as? [[String:AnyObject]] {
                 for beerJSON in beers {

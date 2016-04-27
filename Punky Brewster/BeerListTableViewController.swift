@@ -35,7 +35,6 @@ class BeerListTableViewController: UITableViewController {
  
                 if error != nil {
                     self.performSegueWithIdentifier("showError", sender: self)
-                    print("Request failed with status code: \(error!.userInfo["statusCode"])")
                 } else {
                     self.beers = retrievedBeers
                     self.tableView.reloadData()
