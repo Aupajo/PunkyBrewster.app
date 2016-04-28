@@ -45,15 +45,20 @@ class BeerListRequest {
                 }
                 
                 if let status = jsonObject as? [String:AnyObject] {
-                    if let taps = status["taps"] as? [[String:AnyObject]] {
-                        for beerData in taps {
-                            retrieved.append(Beer.fromJSON(beerData))
+                    if let stores = status["stores"] as? [[String:AnyObject]] {
+                        if let firstStore = stores.first {
+                            if let taps = firstStore["taps"] as? [[String:AnyObject]] {
+                                
+                                for beerData in taps {
+                                    retrieved.append(Beer.fromJSON(beerData))
+                                }
+
+                                retrieved.sortInPlace { $0.name < $1.name }
+
+                                callback(list: retrieved, error: nil)
+                                return
+                            }
                         }
-                        
-                        retrieved.sortInPlace { $0.name < $1.name }
-                        
-                        callback(list: retrieved, error: nil)
-                        return
                     }
                 }
                 
