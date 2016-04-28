@@ -1,6 +1,8 @@
 import UIKit
 
 class BeerListTableViewController: UITableViewController {
+    @IBOutlet weak var errorView:UIView!
+    
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
     var beers:[Beer] = []
@@ -13,32 +15,37 @@ class BeerListTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: CGRectZero)
         
         initActivityIndicator()
+        initErrorView()
         refresh(nil)
     }
     
     
-    @IBAction func refresh(sender: UIRefreshControl?) {
-        if sender == nil {
+    @IBAction func refresh(sender: UIControl?) {
+        errorView.hidden = true
+        
+        if (sender as? UIRefreshControl) == nil {	
             activityIndicator.startAnimating()
         }
-        
+    
         let request = BeerListRequest()
         request.perform {
             (retrievedBeers:[Beer], error:NSError?) -> Void in
  
             dispatch_async(dispatch_get_main_queue(), {
-                if sender != nil {
-                    sender?.endRefreshing()
+                if (sender as? UIRefreshControl) != nil {
+                    (sender as! UIRefreshControl).endRefreshing()
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
  
                 if error != nil {
-                    self.performSegueWithIdentifier("showError", sender: self)
+                    self.beers = []
+                    self.errorView.hidden = false
                 } else {
                     self.beers = retrievedBeers
-                    self.tableView.reloadData()
                 }
+                
+                self.tableView.reloadData()
             })
         }
     }
@@ -63,10 +70,24 @@ class BeerListTableViewController: UITableViewController {
         return cell
     }
     
+    private var screenCenter:CGPoint {
+        get {
+            let screenDimensions = UIScreen.mainScreen().bounds.size
+            let shiftUpwardsOffset = CGFloat(50)
+            return CGPointMake(screenDimensions.width / 2, screenDimensions.height / 2 - shiftUpwardsOffset)
+        }
+    }
+    
     private func initActivityIndicator() {
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = self.view.center
+        activityIndicator.center = self.screenCenter
         view.addSubview(activityIndicator)
+    }
+    
+    private func initErrorView() {
+        errorView.center = self.screenCenter
+        errorView.hidden = true
+        view.addSubview(errorView)
     }
 
 }
