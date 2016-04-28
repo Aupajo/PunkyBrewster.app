@@ -1,7 +1,7 @@
 import Foundation
 
 class BeerListRequest {
-    let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/beers.json")!
+    let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
     
     func perform(callback:(list:[Beer], error:NSError?) -> Void) {
         var retrieved:[Beer] = []
@@ -44,16 +44,23 @@ class BeerListRequest {
                     return
                 }
                 
-                if let beers = jsonObject as? [[String:AnyObject]] {
-                    for beerJSON in beers {
-                        retrieved.append(Beer.fromJSON(beerJSON))
+                if let status = jsonObject as? [String:AnyObject] {
+                    if let taps = status["taps"] as? [[String:AnyObject]] {
+                        for beerData in taps {
+                            retrieved.append(Beer.fromJSON(beerData))
+                        }
+                        
+                        retrieved.sortInPlace { $0.name < $1.name }
+                        
+                        callback(list: retrieved, error: nil)
+                        return
                     }
-                    
-                    retrieved.sortInPlace { $0.name < $1.name }
-                    
-                    callback(list: retrieved, error: nil)
                 }
                 
+                callback(list: [], error: NSError(domain: "server", code: -1, userInfo: [
+                    "message": "Could not parse JSON",
+                    "response": httpResponse
+                ]))
             }
             
             
