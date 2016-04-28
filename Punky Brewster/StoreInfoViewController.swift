@@ -1,29 +1,45 @@
 import UIKit
 import MapKit
 
-class StoreInfoViewController: UIViewController, MKMapViewDelegate {
-    let store: Store = Store()
+class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
+    let stores: [Store] = [Store()]
     let regionRadius: CLLocationDistance = 2000
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addStoreAnnotation()
-        centerMapOnStore()
+        
+        requestUserLocation()
+        addStoreAnnotations()
+        centerMapOnFirstStore()
     }
     
-    var annotation:StoreMapAnnotation {
-        return StoreMapAnnotation(store: store)
+    var annotations:[StoreMapAnnotation] {
+        return stores.map({ store in StoreMapAnnotation(store: store) })
     }
     
-    func centerMapOnStore() {
-        let coordinateRegion = store.regionWithDistance(regionRadius)
+    func centerMapOnFirstStore() {
+        mapView.selectAnnotation(mapView.annotations.first!, animated: false)
+        
+        let coordinateRegion = stores.first!.regionWithDistance(regionRadius)
         mapView.setRegion(coordinateRegion, animated: true)
     }
     
-    func addStoreAnnotation() {
-        mapView.addAnnotation(annotation)
-        mapView.selectAnnotation(mapView.annotations.first!, animated: false)
+    func addStoreAnnotations() {
+        annotations.forEach({ annotation in mapView.addAnnotation(annotation) })
+    }
+    
+    func requestUserLocation() {
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        
+        if authorizationStatus == CLAuthorizationStatus.Restricted || authorizationStatus == CLAuthorizationStatus.Denied {
+            return
+        }
+        
+        if authorizationStatus == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
 }

@@ -233,13 +233,23 @@
                                 </connections>
                             </mapView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="zWd-gz-Py4" secondAttribute="trailing" id="0x2-cD-O9O"/>
+                            <constraint firstItem="uv2-w5-1Ro" firstAttribute="top" secondItem="zWd-gz-Py4" secondAttribute="bottom" id="GKC-q5-cFP"/>
                             <constraint firstItem="zWd-gz-Py4" firstAttribute="leading" secondItem="vr7-6c-AJD" secondAttribute="leading" id="KIf-L4-rW1"/>
                             <constraint firstItem="uv2-w5-1Ro" firstAttribute="top" secondItem="zWd-gz-Py4" secondAttribute="bottom" id="dmB-Op-1XS"/>
+                            <constraint firstItem="uv2-w5-1Ro" firstAttribute="top" secondItem="zWd-gz-Py4" secondAttribute="bottom" id="jIK-Hv-SYO"/>
+                            <constraint firstItem="uv2-w5-1Ro" firstAttribute="top" secondItem="zWd-gz-Py4" secondAttribute="bottom" constant="216" id="wYO-RI-4jT"/>
                             <constraint firstItem="zWd-gz-Py4" firstAttribute="top" secondItem="vr7-6c-AJD" secondAttribute="top" id="yoB-n5-7zK"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GKC-q5-cFP"/>
+                                <exclude reference="dmB-Op-1XS"/>
+                                <exclude reference="wYO-RI-4jT"/>
+                            </mask>
+                        </variation>
                     </view>
                     <tabBarItem key="tabBarItem" title="Store Info" image="Map" id="kb8-ml-PIO"/>
                     <connections>
