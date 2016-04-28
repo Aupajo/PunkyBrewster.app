@@ -3,28 +3,50 @@ import MapKit
 
 class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     let stores: [Store] = [Store()]
-    let regionRadius: CLLocationDistance = 2000
+    let multiPointRegionPadding = 1.5
+    let singlePointRegionRadius: CLLocationDistance = 2000
     let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
+    private var alreadyLocatedUser = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        
         requestUserLocation()
         addStoreAnnotations()
-        centerMapOnFirstStore()
+        
+        if annotations.first != nil {
+            selectFirstStore()
+            centerMapOnFirstStore()
+        }
     }
     
-    var annotations:[StoreMapAnnotation] {
-        return stores.map({ store in StoreMapAnnotation(store: store) })
+    lazy var annotations:[StoreMapAnnotation] = {
+        return self.stores.map({ store in StoreMapAnnotation(store: store) })
+    }()
+    
+    func selectFirstStore() {
+        mapView.selectAnnotation(annotations.first!, animated: false)
+        self.mapView.camera.altitude *= multiPointRegionPadding
     }
     
     func centerMapOnFirstStore() {
-        mapView.selectAnnotation(mapView.annotations.first!, animated: false)
+        let region = stores.first!.regionWithDistance(singlePointRegionRadius)
+        mapView.setRegion(region, animated: true)
+    }
+    
+    func centerMapOnFirstStoreAndUser() {
+        if annotations.first == nil || mapView.userLocation.location == nil {
+            return
+        }
         
-        let coordinateRegion = stores.first!.regionWithDistance(regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
+        let storeAnnotation = annotations.first!
+        
+        mapView.showAnnotations([storeAnnotation, mapView.userLocation], animated: true)
     }
     
     func addStoreAnnotations() {
@@ -33,7 +55,23 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     func requestUserLocation() {
         let authorizationStatus = CLLocationManager.authorizationStatus()
+        handleAuthorizationStatusChange(authorizationStatus)
+    }
+    
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        if alreadyLocatedUser {
+            return
+        }
         
+        centerMapOnFirstStoreAndUser()
+        alreadyLocatedUser = true
+    }
+    
+    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+        handleAuthorizationStatusChange(status)
+    }
+    
+    private func handleAuthorizationStatusChange(authorizationStatus:CLAuthorizationStatus) {
         if authorizationStatus == CLAuthorizationStatus.Restricted || authorizationStatus == CLAuthorizationStatus.Denied {
             return
         }
