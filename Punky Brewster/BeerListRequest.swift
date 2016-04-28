@@ -1,7 +1,7 @@
 import Foundation
 
 class BeerListRequest {
-    let URL = NSURL(string: "https://pbandjson.herokuapp.com/beers.json")!
+    let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/beers.json")!
     
     func perform(callback:(list:[Beer], error:NSError?) -> Void) {
         var retrieved:[Beer] = []
