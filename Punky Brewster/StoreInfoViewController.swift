@@ -1,14 +1,17 @@
 import UIKit
 import MapKit
 
-class StoreInfoViewController: UIViewController, MKMapViewDelegate {
+class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
     let stores: [Store] = [Store()]
     let regionRadius: CLLocationDistance = 2000
+    let locationManager = CLLocationManager()
     
     @IBOutlet weak var mapView: MKMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        requestUserLocation()
         addStoreAnnotations()
         centerMapOnFirstStore()
     }
@@ -26,5 +29,17 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate {
     
     func addStoreAnnotations() {
         annotations.forEach({ annotation in mapView.addAnnotation(annotation) })
+    }
+    
+    func requestUserLocation() {
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        
+        if authorizationStatus == CLAuthorizationStatus.Restricted || authorizationStatus == CLAuthorizationStatus.Denied {
+            return
+        }
+        
+        if authorizationStatus == CLAuthorizationStatus.NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        }
     }
 }
