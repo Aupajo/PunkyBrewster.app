@@ -8,6 +8,10 @@ class Beer: NSObject {
     var abv:Float?
     var pricePerLitre:Float?
     
+    var abvPerDollar:Float {
+        return abv! / pricePerLitre!
+    }
+    
     static func fromJSON(properties:[String:AnyObject]) -> Beer {
         let beer = Beer()
         let imageURLComponents:NSURLComponents = NSURLComponents(string: properties["image_url"] as! String)!

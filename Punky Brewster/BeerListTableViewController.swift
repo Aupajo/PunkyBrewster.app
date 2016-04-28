@@ -50,6 +50,18 @@ class BeerListTableViewController: UITableViewController {
         }
     }
     
+    // Touch events
+    
+    override func canBecomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
+        if motion == .MotionShake && !beers.isEmpty {
+            beers.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
+            tableView.reloadData()
+        }
+    }
 
     // Table view data source
 
