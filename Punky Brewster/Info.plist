@@ -22,6 +22,26 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>cloudfront.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+			<key>punkybrewster.co.nz</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -41,32 +61,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSAppTransportSecurity</key>
-	<dict>
-	  <key>NSExceptionDomains</key>
-	  <dict>
-	    <key>cloudfront.net</key>
-	    <dict>
-	      <key>NSIncludesSubdomains</key>
-	      <true/>
-	      <key>NSExceptionRequiresForwardSecrecy</key>
-	      <false/>
-	    </dict>
-	    <key>punkybrewster.co.nz</key>
-	    <dict>
-	      <key>NSIncludesSubdomains</key>
-	      <true/>
-	      <key>NSExceptionRequiresForwardSecrecy</key>
-	      <false/>
-	    </dict>
-	    <key>herokuapp.com</key>
-	    <dict>
-	      <key>NSIncludesSubdomains</key>
-	      <true/>
-	      <key>NSExceptionRequiresForwardSecrecy</key>
-	      <false/>
-	    </dict>
-	  </dict>
-	</dict>
 </dict>
 </plist>
