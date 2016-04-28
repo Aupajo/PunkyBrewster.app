@@ -9,25 +9,38 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    private var alreadyLocatedUser = false
+    private var alreadyLocatedUser:Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         locationManager.delegate = self
         
-        requestUserLocation()
         addStoreAnnotations()
+        selectFirstStore()
+        requestUserLocation()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        alreadyLocatedUser = false
         
         if annotations.first != nil {
-            selectFirstStore()
-            centerMapOnFirstStore()
+            focusMap()
         }
     }
     
     lazy var annotations:[StoreMapAnnotation] = {
         return self.stores.map({ store in StoreMapAnnotation(store: store) })
     }()
+    
+    func focusMap() {
+        if mapView.userLocation.location == nil {
+            centerMapOnFirstStore()
+        } else {
+            centerMapOnFirstStoreAndUser()
+        }
+        
+    }
     
     func selectFirstStore() {
         mapView.selectAnnotation(annotations.first!, animated: false)
@@ -40,12 +53,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     func centerMapOnFirstStoreAndUser() {
-        if annotations.first == nil || mapView.userLocation.location == nil {
-            return
-        }
-        
         let storeAnnotation = annotations.first!
-        
         mapView.showAnnotations([storeAnnotation, mapView.userLocation], animated: true)
     }
     
@@ -63,7 +71,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
             return
         }
         
-        centerMapOnFirstStoreAndUser()
+        focusMap()
         alreadyLocatedUser = true
     }
     
