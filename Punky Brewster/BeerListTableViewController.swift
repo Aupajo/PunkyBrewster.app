@@ -86,6 +86,7 @@ class BeerListTableViewController: UITableViewController {
     func promptForNotifications() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let appHasPromptedUser = "promptedForNotifications"
+        let application = UIApplication.sharedApplication()
         
         if defaults.boolForKey(appHasPromptedUser) != true {
             let title = "New beer notifications"
@@ -99,9 +100,7 @@ class BeerListTableViewController: UITableViewController {
             
             // OK
             let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
-                let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
-                let sharedApplication = UIApplication.sharedApplication()
-                sharedApplication.registerUserNotificationSettings(notificationSettings)
+                self.initNotifications()
             }
             
             alertController.addAction(OKAction)
@@ -109,7 +108,20 @@ class BeerListTableViewController: UITableViewController {
             self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
             
             defaults.setBool(true, forKey: appHasPromptedUser)
+        } else if application.isRegisteredForRemoteNotifications() {
+            initNotifications()
         }
+    }
+    
+    func initNotifications() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
+        let application = UIApplication.sharedApplication()
+        
+        // Will prompt the user if notifications are not enabled
+        application.registerUserNotificationSettings(notificationSettings)
+        
+        // Begin listening for remote notifications
+        application.registerForRemoteNotifications()
     }
     
     private var screenCenter:CGPoint {
