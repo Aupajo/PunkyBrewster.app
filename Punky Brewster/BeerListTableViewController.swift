@@ -17,6 +17,7 @@ class BeerListTableViewController: UITableViewController {
         initActivityIndicator()
         initErrorView()
         refresh(nil)
+        promptForNotifications()
     }
     
     
@@ -80,6 +81,35 @@ class BeerListTableViewController: UITableViewController {
         cell.refreshFrom(beer)
         
         return cell
+    }
+    
+    func promptForNotifications() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let appHasPromptedUser = "promptedForNotifications"
+        
+        if defaults.boolForKey(appHasPromptedUser) != true {
+            let title = "New beer notifications"
+            let message = "Would you like to be notified when new beers become available? You can disable this in Settings."
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            
+            // Cancel
+            let cancelAction = UIAlertAction(title: "No thanks", style: .Cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            // OK
+            let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
+                let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
+                let sharedApplication = UIApplication.sharedApplication()
+                sharedApplication.registerUserNotificationSettings(notificationSettings)
+            }
+            
+            alertController.addAction(OKAction)
+            
+            self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
+            
+            defaults.setBool(true, forKey: appHasPromptedUser)
+        }
     }
     
     private var screenCenter:CGPoint {
