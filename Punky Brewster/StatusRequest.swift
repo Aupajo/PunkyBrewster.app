@@ -2,13 +2,14 @@ import Foundation
 
 class StatusRequest {
     let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
+    static var cachedStore:Store = Store()
     
-    func perform(callback:(store:Store?, error:NSError?) -> Void) {
+    func perform(callback:(store:Store, error:NSError?) -> Void) {
         let task = NSURLSession.sharedSession().dataTaskWithURL(URL) {
             (data, response, error) in
  
             if error != nil {
-                callback(store: nil, error: error)
+                callback(store: StatusRequest.cachedStore, error: error)
                 return
             }
 
@@ -17,7 +18,7 @@ class StatusRequest {
             
             if statusCode != 200 {
                 
-                callback(store: nil, error: NSError(domain: "server", code: -1, userInfo: [
+                callback(store: StatusRequest.cachedStore, error: NSError(domain: "server", code: -1, userInfo: [
                     "statusCode": statusCode,
                     "response": httpResponse
                 ]))
@@ -38,31 +39,31 @@ class StatusRequest {
                 }
                 
                 if parseError != nil {
-                    callback(store: nil, error: error)
+                    callback(store: StatusRequest.cachedStore, error: error)
                     return
                 }
                 
                 if let status = jsonObject as? [String:AnyObject] {
                     if let stores = status["stores"] as? [[String:AnyObject]] {
                         if let firstStore = stores.first {
-                            let store = Store()
+                            StatusRequest.cachedStore = Store()
                             
                             if let taps = firstStore["taps"] as? [[String:AnyObject]] {
                                 
                                 for beerData in taps {
-                                    store.taps.append(Beer.fromJSON(beerData))
+                                    StatusRequest.cachedStore.taps.append(Beer.fromJSON(beerData))
                                 }
 
-                                store.taps.sortInPlace { $0.name < $1.name }
+                                StatusRequest.cachedStore.taps.sortInPlace { $0.name < $1.name }
 
-                                callback(store: store, error: nil)
+                                callback(store: StatusRequest.cachedStore, error: nil)
                                 return
                             }
                         }
                     }
                 }
                 
-                callback(store: nil, error: NSError(domain: "server", code: -1, userInfo: [
+                callback(store: StatusRequest.cachedStore, error: NSError(domain: "server", code: -1, userInfo: [
                     "message": "Could not parse JSON",
                     "response": httpResponse
                 ]))
