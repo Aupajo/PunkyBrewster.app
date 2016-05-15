@@ -91,7 +91,6 @@ class BeerListTableViewController: UITableViewController {
     func promptForNotifications() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let appHasPromptedUser = "promptedForNotifications"
-        let application = UIApplication.sharedApplication()
         
         if defaults.boolForKey(appHasPromptedUser) != true {
             let title = "New beer notifications"
@@ -105,7 +104,7 @@ class BeerListTableViewController: UITableViewController {
             
             // OK
             let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
-                self.initNotifications()
+                self.nativePromptForNotifications()
             }
             
             alertController.addAction(OKAction)
@@ -113,13 +112,11 @@ class BeerListTableViewController: UITableViewController {
             self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
             
             defaults.setBool(true, forKey: appHasPromptedUser)
-        } else if application.isRegisteredForRemoteNotifications() {
-            initNotifications()
         }
     }
     
-    func initNotifications() {
-        OneSignal.defaultClient().enableInAppAlertNotification(true)
+    func nativePromptForNotifications() {
+        OneSignal.defaultClient().registerForPushNotifications()
     }
     
     private var screenCenter:CGPoint {
