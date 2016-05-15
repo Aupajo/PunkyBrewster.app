@@ -61,7 +61,7 @@ class BeerListTableViewController: UITableViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && firstStore != nil && firstStore!.taps.isEmpty {
+        if motion == .MotionShake && firstStore != nil && !firstStore!.taps.isEmpty {
             firstStore!.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
