@@ -2,7 +2,6 @@ import UIKit
 import MapKit
 
 class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate {
-    let stores: [Store] = [Store()]
     let multiPointRegionPadding = 1.5
     let singlePointRegionRadius: CLLocationDistance = 2000
     let locationManager = CLLocationManager()
@@ -10,6 +9,10 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     @IBOutlet weak var mapView: MKMapView!
     
     private var alreadyLocatedUser:Bool = false
+    
+    var firstStore:Store? {
+        return StatusRequest.cachedStores[0]
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +33,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     lazy var annotations:[StoreMapAnnotation] = {
-        return self.stores.map({ store in StoreMapAnnotation(store: store) })
+        return StatusRequest.cachedStores.map({ store in StoreMapAnnotation(store: store) })
     }()
     
     func focusMap() {
@@ -48,13 +51,17 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     }
     
     func centerMapOnFirstStore() {
-        let region = stores.first!.regionWithDistance(singlePointRegionRadius)
-        mapView.setRegion(region, animated: true)
+        if firstStore != nil {
+            let region = StatusRequest.cachedStores.first!.regionWithDistance(singlePointRegionRadius)
+            mapView.setRegion(region, animated: true)
+        }
     }
     
     func centerMapOnFirstStoreAndUser() {
-        let storeAnnotation = annotations.first!
-        mapView.showAnnotations([storeAnnotation, mapView.userLocation], animated: true)
+        if !annotations.isEmpty {
+            let storeAnnotation = annotations.first!
+            mapView.showAnnotations([storeAnnotation, mapView.userLocation], animated: true)
+        }
     }
     
     func addStoreAnnotations() {

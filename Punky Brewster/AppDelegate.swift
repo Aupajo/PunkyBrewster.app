@@ -7,8 +7,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        customiseAppearance()
         
-        // Appearance customisation
+        return true
+    }
+    func customiseAppearance() {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.barStyle = .Black
         navBarAppearance.barTintColor = .blackColor()
@@ -24,13 +27,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let uiLabelAppearance = UILabel.appearance()
         uiLabelAppearance.font = defaultFontWithSize(18)
-        
-        return true
     }
     
     func defaultFontWithSize(size: CGFloat) -> UIFont {
         let fontDescriptor = UIFontDescriptor(name: "DIN Condensed", size: size)
         return UIFont(descriptor: fontDescriptor, size: size)
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        print("Device token: \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
+        print(userInfo)
+    }
+    
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        print(error)
     }
 
     func applicationWillResignActive(application: UIApplication) {

@@ -5,7 +5,11 @@ class BeerListTableViewController: UITableViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    var beers:[Beer] = []
+    var stores:[Store] = StatusRequest.cachedStores
+    
+    var firstStore:Store? {
+        return stores.first
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +21,7 @@ class BeerListTableViewController: UITableViewController {
         initActivityIndicator()
         initErrorView()
         refresh(nil)
+        promptForNotifications()
     }
     
     
@@ -27,9 +32,9 @@ class BeerListTableViewController: UITableViewController {
             activityIndicator.startAnimating()
         }
     
-        let request = BeerListRequest()
+        let request = StatusRequest()
         request.perform {
-            (retrievedBeers:[Beer], error:NSError?) -> Void in
+            (stores:[Store], error:NSError?) -> Void in
  
             dispatch_async(dispatch_get_main_queue(), {
                 if (sender as? UIRefreshControl) != nil {
@@ -37,12 +42,11 @@ class BeerListTableViewController: UITableViewController {
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
+                
+                self.stores = stores
  
                 if error != nil {
-                    self.beers = []
                     self.errorView.hidden = false
-                } else {
-                    self.beers = retrievedBeers
                 }
                 
                 self.tableView.reloadData()
@@ -57,8 +61,8 @@ class BeerListTableViewController: UITableViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && !beers.isEmpty {
-            beers.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
+        if motion == .MotionShake && firstStore != nil && firstStore!.taps.isEmpty {
+            firstStore!.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
     }
@@ -70,16 +74,59 @@ class BeerListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return beers.count
+        return firstStore != nil ? firstStore!.taps.count : 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BeerCell", forIndexPath: indexPath) as! BeerTableViewCell
-        let beer = beers[indexPath.row]
         
-        cell.refreshFrom(beer)
-        
+        if firstStore != nil {
+            let beer = firstStore!.taps[indexPath.row]
+            cell.refreshFrom(beer)
+        }
+    
         return cell
+    }
+    
+    func promptForNotifications() {
+        let defaults = NSUserDefaults.standardUserDefaults()
+        let appHasPromptedUser = "promptedForNotifications"
+        let application = UIApplication.sharedApplication()
+        
+        if defaults.boolForKey(appHasPromptedUser) != true {
+            let title = "New beer notifications"
+            let message = "Would you like to be notified when new beers become available? You can disable this in Settings."
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            
+            // Cancel
+            let cancelAction = UIAlertAction(title: "No thanks", style: .Cancel, handler: nil)
+            
+            alertController.addAction(cancelAction)
+            
+            // OK
+            let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
+                self.initNotifications()
+            }
+            
+            alertController.addAction(OKAction)
+            
+            self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
+            
+            defaults.setBool(true, forKey: appHasPromptedUser)
+        } else if application.isRegisteredForRemoteNotifications() {
+            initNotifications()
+        }
+    }
+    
+    func initNotifications() {
+        let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
+        let application = UIApplication.sharedApplication()
+        
+        // Will prompt the user if notifications are not enabled
+        application.registerUserNotificationSettings(notificationSettings)
+        
+        // Begin listening for remote notifications
+        application.registerForRemoteNotifications()
     }
     
     private var screenCenter:CGPoint {

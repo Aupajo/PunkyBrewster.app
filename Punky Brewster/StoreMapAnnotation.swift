@@ -17,6 +17,6 @@ class StoreMapAnnotation: NSObject, MKAnnotation {
     }
     
     var subtitle:String? {
-        return store.address
+        return store.shortAddress
     }
 }
