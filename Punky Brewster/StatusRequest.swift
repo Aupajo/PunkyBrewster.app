@@ -1,4 +1,5 @@
 import Foundation
+import MapKit
 
 class StatusRequest {
     let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
@@ -47,11 +48,33 @@ class StatusRequest {
                     if let stores = status["stores"] as? [[String:AnyObject]] {
                         StatusRequest.cachedStores = []
                         
-                        if let firstStore = stores.first {
+                        for storeJSON in stores {
                             let store = Store()
                             
-                            if let taps = firstStore["taps"] as? [[String:AnyObject]] {
-                                
+                            if let storeName = storeJSON["name"] as? String {
+                                store.name = storeName
+                            }
+                            
+                            if let storeShortAddress = storeJSON["short_address"] as? String {
+                                store.shortAddress = storeShortAddress
+                            }
+                            
+                            if let location = storeJSON["location"] as? [String:AnyObject] {
+                                if let latitude = location["latitude"] as? Double {
+                                    if let longitude = location["longitude"] as? Double {
+                                        store.location = CLLocation(
+                                            latitude: latitude,
+                                            longitude: longitude
+                                        )
+                                    }
+                                }
+                            }
+                            
+                            if let storeHours = storeJSON["hours"] as? String {
+                                store.hours = storeHours
+                            }
+                            
+                            if let taps = storeJSON["taps"] as? [[String:AnyObject]] {
                                 for beerData in taps {
                                     store.taps.append(Beer.fromJSON(beerData))
                                 }
