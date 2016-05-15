@@ -5,7 +5,7 @@ class BeerListTableViewController: UITableViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    var beers:[Beer] = []
+    var store:Store = StatusRequest.cachedStore
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +38,11 @@ class BeerListTableViewController: UITableViewController {
                 } else {
                     self.activityIndicator.stopAnimating()
                 }
+                
+                self.store = store
  
                 if error != nil {
-                    self.beers = []
                     self.errorView.hidden = false
-                } else {
-                    self.beers = store.taps
                 }
                 
                 self.tableView.reloadData()
@@ -58,8 +57,8 @@ class BeerListTableViewController: UITableViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && !beers.isEmpty {
-            beers.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
+        if motion == .MotionShake && !store.taps.isEmpty {
+            store.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
     }
@@ -71,12 +70,12 @@ class BeerListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return beers.count
+        return store.taps.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BeerCell", forIndexPath: indexPath) as! BeerTableViewCell
-        let beer = beers[indexPath.row]
+        let beer = store.taps[indexPath.row]
         
         cell.refreshFrom(beer)
         
