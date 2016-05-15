@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46066E3499D00CAF38DBEB2A /* Pods_Punky_Brewster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02E381693B5C873883A08021 /* Pods_Punky_Brewster.framework */; };
 		90B01FD01C1B7AD1004E81C6 /* ErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B01FCF1C1B7AD1004E81C6 /* ErrorViewController.swift */; };
 		C115688E1AF62B6D00C3BE57 /* StoreInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */; };
 		C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C115688F1AF62BDF00C3BE57 /* MapKit.framework */; };
@@ -21,7 +22,6 @@
 		C146D93D1AE7284B006B9A05 /* Punky_BrewsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */; };
 		C19B93081AFEEDF300053203 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93071AFEEDF300053203 /* Store.swift */; };
 		C19B930A1AFF01FE00053203 /* StoreMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */; };
-		E4C92B266E14CAB526868F86 /* Pods_Punky_Brewster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,9 +35,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5A9BD15454A203213FAACCBC /* Pods-Punky Brewster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punky Brewster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster.debug.xcconfig"; sourceTree = "<group>"; };
+		02E381693B5C873883A08021 /* Pods_Punky_Brewster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punky_Brewster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		59EF7838228DB1D49B69755B /* Pods-Punky Brewster.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punky Brewster.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster.debug.xcconfig"; sourceTree = "<group>"; };
+		72350D635E48B8BAD7F2B28E /* Pods-Punky Brewster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punky Brewster.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster.release.xcconfig"; sourceTree = "<group>"; };
 		90B01FCF1C1B7AD1004E81C6 /* ErrorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorViewController.swift; sourceTree = "<group>"; };
-		A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punky_Brewster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C115688C1AF6261300C3BE57 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		C115688D1AF62B6D00C3BE57 /* StoreInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreInfoViewController.swift; sourceTree = "<group>"; };
 		C115688F1AF62BDF00C3BE57 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -56,7 +57,6 @@
 		C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punky_BrewsterTests.swift; sourceTree = "<group>"; };
 		C19B93071AFEEDF300053203 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapAnnotation.swift; sourceTree = "<group>"; };
-		D44C675965507F8FD11377D7 /* Pods-Punky Brewster.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Punky Brewster.release.xcconfig"; path = "Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */,
-				E4C92B266E14CAB526868F86 /* Pods_Punky_Brewster.framework in Frameworks */,
+				46066E3499D00CAF38DBEB2A /* Pods_Punky_Brewster.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,19 +79,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		78CDAD4B0D58D5521200958F /* Pods */ = {
+		951A71EFA823413E2B251706 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				5A9BD15454A203213FAACCBC /* Pods-Punky Brewster.debug.xcconfig */,
-				D44C675965507F8FD11377D7 /* Pods-Punky Brewster.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		78CF790463FDCFE7A50253CD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				A07B323A85184892D1B0CD33 /* Pods_Punky_Brewster.framework */,
+				02E381693B5C873883A08021 /* Pods_Punky_Brewster.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -104,8 +95,8 @@
 				C146D9231AE7284B006B9A05 /* Punky Brewster */,
 				C146D9391AE7284B006B9A05 /* Punky BrewsterTests */,
 				C146D9221AE7284B006B9A05 /* Products */,
-				78CDAD4B0D58D5521200958F /* Pods */,
-				78CF790463FDCFE7A50253CD /* Frameworks */,
+				FC00F434C2BE2D414EDAE367 /* Pods */,
+				951A71EFA823413E2B251706 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -163,6 +154,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		FC00F434C2BE2D414EDAE367 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				59EF7838228DB1D49B69755B /* Pods-Punky Brewster.debug.xcconfig */,
+				72350D635E48B8BAD7F2B28E /* Pods-Punky Brewster.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -170,12 +170,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C146D9401AE7284B006B9A05 /* Build configuration list for PBXNativeTarget "Punky Brewster" */;
 			buildPhases = (
-				2D232F15E6034022605A42AD /* Check Pods Manifest.lock */,
+				C0604D62CC919E0DED31AE3B /* 📦 Check Pods Manifest.lock */,
 				C146D91D1AE7284B006B9A05 /* Sources */,
 				C146D91E1AE7284B006B9A05 /* Frameworks */,
 				C146D91F1AE7284B006B9A05 /* Resources */,
-				00F4C887395543BF1199EE58 /* Embed Pods Frameworks */,
-				680CB9D8BA1BA221470A19D8 /* Copy Pods Resources */,
+				C618043B37F650FAF6A23A45 /* 📦 Embed Pods Frameworks */,
+				9F0061A34441247152756A0B /* 📦 Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,29 +273,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		00F4C887395543BF1199EE58 /* Embed Pods Frameworks */ = {
+		9F0061A34441247152756A0B /* 📦 Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "📦 Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2D232F15E6034022605A42AD /* Check Pods Manifest.lock */ = {
+		C0604D62CC919E0DED31AE3B /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "📦 Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -303,19 +303,19 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		680CB9D8BA1BA221470A19D8 /* Copy Pods Resources */ = {
+		C618043B37F650FAF6A23A45 /* 📦 Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "📦 Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Punky Brewster/Pods-Punky Brewster-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -453,7 +453,7 @@
 		};
 		C146D9411AE7284B006B9A05 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A9BD15454A203213FAACCBC /* Pods-Punky Brewster.debug.xcconfig */;
+			baseConfigurationReference = 59EF7838228DB1D49B69755B /* Pods-Punky Brewster.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -471,7 +471,7 @@
 		};
 		C146D9421AE7284B006B9A05 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D44C675965507F8FD11377D7 /* Pods-Punky Brewster.release.xcconfig */;
+			baseConfigurationReference = 72350D635E48B8BAD7F2B28E /* Pods-Punky Brewster.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
