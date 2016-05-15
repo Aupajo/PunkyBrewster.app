@@ -1,16 +1,14 @@
 import Foundation
 
-class BeerListRequest {
+class StatusRequest {
     let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
     
-    func perform(callback:(list:[Beer], error:NSError?) -> Void) {
-        var retrieved:[Beer] = []
-        
+    func perform(callback:(store:Store?, error:NSError?) -> Void) {
         let task = NSURLSession.sharedSession().dataTaskWithURL(URL) {
             (data, response, error) in
  
             if error != nil {
-                callback(list: [], error: error)
+                callback(store: nil, error: error)
                 return
             }
 
@@ -19,7 +17,7 @@ class BeerListRequest {
             
             if statusCode != 200 {
                 
-                callback(list: [], error: NSError(domain: "server", code: -1, userInfo: [
+                callback(store: nil, error: NSError(domain: "server", code: -1, userInfo: [
                     "statusCode": statusCode,
                     "response": httpResponse
                 ]))
@@ -40,29 +38,31 @@ class BeerListRequest {
                 }
                 
                 if parseError != nil {
-                    callback(list: [], error: error)
+                    callback(store: nil, error: error)
                     return
                 }
                 
                 if let status = jsonObject as? [String:AnyObject] {
                     if let stores = status["stores"] as? [[String:AnyObject]] {
                         if let firstStore = stores.first {
+                            let store = Store()
+                            
                             if let taps = firstStore["taps"] as? [[String:AnyObject]] {
                                 
                                 for beerData in taps {
-                                    retrieved.append(Beer.fromJSON(beerData))
+                                    store.taps.append(Beer.fromJSON(beerData))
                                 }
 
-                                retrieved.sortInPlace { $0.name < $1.name }
+                                store.taps.sortInPlace { $0.name < $1.name }
 
-                                callback(list: retrieved, error: nil)
+                                callback(store: store, error: nil)
                                 return
                             }
                         }
                     }
                 }
                 
-                callback(list: [], error: NSError(domain: "server", code: -1, userInfo: [
+                callback(store: nil, error: NSError(domain: "server", code: -1, userInfo: [
                     "message": "Could not parse JSON",
                     "response": httpResponse
                 ]))

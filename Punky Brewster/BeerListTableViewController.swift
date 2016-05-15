@@ -28,9 +28,9 @@ class BeerListTableViewController: UITableViewController {
             activityIndicator.startAnimating()
         }
     
-        let request = BeerListRequest()
+        let request = StatusRequest()
         request.perform {
-            (retrievedBeers:[Beer], error:NSError?) -> Void in
+            (store:Store?, error:NSError?) -> Void in
  
             dispatch_async(dispatch_get_main_queue(), {
                 if (sender as? UIRefreshControl) != nil {
@@ -43,7 +43,7 @@ class BeerListTableViewController: UITableViewController {
                     self.beers = []
                     self.errorView.hidden = false
                 } else {
-                    self.beers = retrievedBeers
+                    self.beers = store!.taps
                 }
                 
                 self.tableView.reloadData()

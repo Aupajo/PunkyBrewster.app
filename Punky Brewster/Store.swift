@@ -6,6 +6,7 @@ class Store: NSObject {
     let shortAddress = "22B Tyne Street"
     let location = CLLocation(latitude: -43.5368540539132, longitude: 172.608717675136)
     let hours = "Mon/Tues: CLOSED\nWed/Thur: 12pm - 7pm\nFri/Sat: 12pm - 8pm\nSun: 12pm - 5pm"
+    var taps:[Beer] = []
     
     lazy var annotation:StoreMapAnnotation = {
         return StoreMapAnnotation(store: self)
