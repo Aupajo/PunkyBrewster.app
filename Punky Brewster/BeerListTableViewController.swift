@@ -5,7 +5,11 @@ class BeerListTableViewController: UITableViewController {
     
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
     
-    var store:Store = StatusRequest.cachedStore
+    var stores:[Store] = StatusRequest.cachedStores
+    
+    var firstStore:Store? {
+        return stores.first
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +34,7 @@ class BeerListTableViewController: UITableViewController {
     
         let request = StatusRequest()
         request.perform {
-            (store:Store, error:NSError?) -> Void in
+            (stores:[Store], error:NSError?) -> Void in
  
             dispatch_async(dispatch_get_main_queue(), {
                 if (sender as? UIRefreshControl) != nil {
@@ -39,7 +43,7 @@ class BeerListTableViewController: UITableViewController {
                     self.activityIndicator.stopAnimating()
                 }
                 
-                self.store = store
+                self.stores = stores
  
                 if error != nil {
                     self.errorView.hidden = false
@@ -57,8 +61,8 @@ class BeerListTableViewController: UITableViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && !store.taps.isEmpty {
-            store.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
+        if motion == .MotionShake && firstStore != nil && firstStore!.taps.isEmpty {
+            firstStore!.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
     }
@@ -70,15 +74,17 @@ class BeerListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.taps.count
+        return firstStore != nil ? firstStore!.taps.count : 0
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BeerCell", forIndexPath: indexPath) as! BeerTableViewCell
-        let beer = store.taps[indexPath.row]
         
-        cell.refreshFrom(beer)
-        
+        if firstStore != nil {
+            let beer = firstStore!.taps[indexPath.row]
+            cell.refreshFrom(beer)
+        }
+    
         return cell
     }
     
