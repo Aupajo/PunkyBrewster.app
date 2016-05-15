@@ -2,12 +2,13 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let oneSignalAppId = NSProcessInfo.processInfo().environment["ONESIGNAL_APP_ID"]!
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         customiseAppearance()
+        
+        _ = OneSignal(launchOptions: launchOptions, appId: oneSignalAppId, handleNotification: nil, autoRegister: false)
         
         return true
     }

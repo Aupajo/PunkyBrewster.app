@@ -119,14 +119,7 @@ class BeerListTableViewController: UITableViewController {
     }
     
     func initNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
-        let application = UIApplication.sharedApplication()
-        
-        // Will prompt the user if notifications are not enabled
-        application.registerUserNotificationSettings(notificationSettings)
-        
-        // Begin listening for remote notifications
-        application.registerForRemoteNotifications()
+        OneSignal.defaultClient().enableInAppAlertNotification(true)
     }
     
     private var screenCenter:CGPoint {
