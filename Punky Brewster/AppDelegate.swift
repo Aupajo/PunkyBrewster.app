@@ -2,12 +2,14 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    let oneSignalAppId = NSProcessInfo.processInfo().environment["ONESIGNAL_APP_ID"]!
     var window: UIWindow?
-
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         customiseAppearance()
+        
+        _ = OneSignal(launchOptions: launchOptions, appId: oneSignalAppId, handleNotification: nil, autoRegister: false)
+        OneSignal.defaultClient().enableInAppAlertNotification(true)
         
         return true
     }
@@ -32,18 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func defaultFontWithSize(size: CGFloat) -> UIFont {
         let fontDescriptor = UIFontDescriptor(name: "DIN Condensed", size: size)
         return UIFont(descriptor: fontDescriptor, size: size)
-    }
-    
-    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        print("Device token: \(deviceToken)")
-    }
-    
-    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
-        print(userInfo)
-    }
-    
-    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print(error)
     }
 
     func applicationWillResignActive(application: UIApplication) {

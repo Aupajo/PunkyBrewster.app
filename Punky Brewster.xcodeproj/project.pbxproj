@@ -55,6 +55,7 @@
 		C146D9361AE7284B006B9A05 /* Punky BrewsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Punky BrewsterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C146D93B1AE7284B006B9A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punky_BrewsterTests.swift; sourceTree = "<group>"; };
+		C17988D21CE81F980044E6D0 /* PunkyBrewster-Bridging Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PunkyBrewster-Bridging Header.h"; sourceTree = "<group>"; };
 		C19B93071AFEEDF300053203 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapAnnotation.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -90,6 +91,7 @@
 		C146D9181AE7284B006B9A05 = {
 			isa = PBXGroup;
 			children = (
+				C17988D21CE81F980044E6D0 /* PunkyBrewster-Bridging Header.h */,
 				C115688F1AF62BDF00C3BE57 /* MapKit.framework */,
 				C115688C1AF6261300C3BE57 /* README.md */,
 				C146D9231AE7284B006B9A05 /* Punky Brewster */,
@@ -466,6 +468,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "PunkyBrewster-Bridging Header.h";
 			};
 			name = Debug;
 		};
@@ -484,6 +487,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "PunkyBrewster-Bridging Header.h";
 			};
 			name = Release;
 		};

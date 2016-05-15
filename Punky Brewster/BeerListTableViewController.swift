@@ -61,7 +61,7 @@ class BeerListTableViewController: UITableViewController {
     }
     
     override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && firstStore != nil && firstStore!.taps.isEmpty {
+        if motion == .MotionShake && firstStore != nil && !firstStore!.taps.isEmpty {
             firstStore!.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
@@ -91,7 +91,6 @@ class BeerListTableViewController: UITableViewController {
     func promptForNotifications() {
         let defaults = NSUserDefaults.standardUserDefaults()
         let appHasPromptedUser = "promptedForNotifications"
-        let application = UIApplication.sharedApplication()
         
         if defaults.boolForKey(appHasPromptedUser) != true {
             let title = "New beer notifications"
@@ -105,7 +104,7 @@ class BeerListTableViewController: UITableViewController {
             
             // OK
             let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
-                self.initNotifications()
+                self.nativePromptForNotifications()
             }
             
             alertController.addAction(OKAction)
@@ -113,20 +112,11 @@ class BeerListTableViewController: UITableViewController {
             self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
             
             defaults.setBool(true, forKey: appHasPromptedUser)
-        } else if application.isRegisteredForRemoteNotifications() {
-            initNotifications()
         }
     }
     
-    func initNotifications() {
-        let notificationSettings = UIUserNotificationSettings(forTypes: [.Sound, .Alert, .Badge], categories: nil)
-        let application = UIApplication.sharedApplication()
-        
-        // Will prompt the user if notifications are not enabled
-        application.registerUserNotificationSettings(notificationSettings)
-        
-        // Begin listening for remote notifications
-        application.registerForRemoteNotifications()
+    func nativePromptForNotifications() {
+        OneSignal.defaultClient().registerForPushNotifications()
     }
     
     private var screenCenter:CGPoint {
