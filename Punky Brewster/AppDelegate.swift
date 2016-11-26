@@ -9,19 +9,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         customiseAppearance()
         
+        
+        let oneSignalSettings: [String: Any] = [
+            // This will allow notifications to pop up while using the app.
+            kOSSettingsKeyInFocusDisplayOption: OSNotificationDisplayType.notification.rawValue,
+            
+            // Disables prompting the user to enable notifications at app load – we handle this
+            // inside the BerListTableViewController instead, so we can present a nicer message
+            // to the user.
+            kOSSettingsKeyAutoPrompt: false
+        ]
+        
         // Initializes OneSignal for push notifications
-        _ = OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppId, handleNotificationAction: nil, settings: [
-                // This will allow notifications to pop up while using the app.
-                kOSSettingsKeyInFocusDisplayOption: OSNotificationDisplayType.notification.rawValue,
-                
-                // Disables prompting the user to enable notifications at app load – we handle this
-                // inside the BerListTableViewController instead, so we can present a nicer message
-                // to the user.
-                kOSSettingsKeyAutoPrompt: false
-            ])
+        _ = OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppId, handleNotificationReceived: { _ in self.refreshTapList() }, handleNotificationAction: nil, settings: oneSignalSettings)
         
         return true
     }
+    
     func customiseAppearance() {
         let navBarAppearance = UINavigationBar.appearance()
         navBarAppearance.barStyle = .black
@@ -43,6 +47,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func defaultFontWithSize(_ size: CGFloat) -> UIFont {
         let fontDescriptor = UIFontDescriptor(name: "DIN Condensed", size: size)
         return UIFont(descriptor: fontDescriptor, size: size)
+    }
+    
+    func refreshTapList() -> Void {
+        if let rootViewController = self.window?.rootViewController as? UITabBarController {
+            if let navigationController = rootViewController.selectedViewController as? UINavigationController {
+                if let currentViewController = navigationController.visibleViewController as? BeerListTableViewController {
+                    currentViewController.refresh(nil)
+                }
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
