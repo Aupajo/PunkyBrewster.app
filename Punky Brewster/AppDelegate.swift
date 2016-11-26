@@ -2,14 +2,23 @@ import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
+    // If this line fails, see notes on setting environment variables in the README
     let oneSignalAppId = ProcessInfo.processInfo.environment["ONESIGNAL_APP_ID"]!
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         customiseAppearance()
         
-        _ = OneSignal(launchOptions: launchOptions, appId: oneSignalAppId, handleNotification: nil, autoRegister: false)
-        OneSignal.defaultClient().enable(inAppAlertNotification: true)
+        // Initializes OneSignal for push notifications
+        _ = OneSignal.initWithLaunchOptions(launchOptions, appId: oneSignalAppId, handleNotificationAction: nil, settings: [
+                // This will allow notifications to pop up while using the app.
+                kOSSettingsKeyInFocusDisplayOption: OSNotificationDisplayType.notification.rawValue,
+                
+                // Disables prompting the user to enable notifications at app load – we handle this
+                // inside the BerListTableViewController instead, so we can present a nicer message
+                // to the user.
+                kOSSettingsKeyAutoPrompt: false
+            ])
         
         return true
     }

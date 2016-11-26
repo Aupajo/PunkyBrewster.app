@@ -116,7 +116,7 @@ class BeerListTableViewController: UITableViewController {
     }
     
     func nativePromptForNotifications() {
-        OneSignal.defaultClient().registerForPushNotifications()
+        OneSignal.registerForPushNotifications()
     }
     
     fileprivate var screenCenter:CGPoint {
