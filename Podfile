@@ -1,4 +1,4 @@
-platform :ios, '8.3'
+platform :ios, '9.3'
 use_frameworks!
 
 # For push notifications

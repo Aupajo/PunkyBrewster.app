@@ -3,7 +3,7 @@ import UIKit
 class BeerListTableViewController: UITableViewController {
     @IBOutlet weak var errorView:UIView!
     
-    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .Gray)
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     
     var stores:[Store] = StatusRequest.cachedStores
     
@@ -16,7 +16,7 @@ class BeerListTableViewController: UITableViewController {
 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
-        tableView.tableFooterView = UIView(frame: CGRectZero)
+        tableView.tableFooterView = UIView(frame: CGRect.zero)
         
         initActivityIndicator()
         initErrorView()
@@ -25,8 +25,8 @@ class BeerListTableViewController: UITableViewController {
     }
     
     
-    @IBAction func refresh(sender: UIControl?) {
-        errorView.hidden = true
+    @IBAction func refresh(_ sender: UIControl?) {
+        errorView.isHidden = true
         
         if (sender as? UIRefreshControl) == nil {	
             activityIndicator.startAnimating()
@@ -36,7 +36,7 @@ class BeerListTableViewController: UITableViewController {
         request.perform {
             (stores:[Store], error:NSError?) -> Void in
  
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 if (sender as? UIRefreshControl) != nil {
                     (sender as! UIRefreshControl).endRefreshing()
                 } else {
@@ -46,7 +46,7 @@ class BeerListTableViewController: UITableViewController {
                 self.stores = stores
  
                 if error != nil {
-                    self.errorView.hidden = false
+                    self.errorView.isHidden = false
                 }
                 
                 self.tableView.reloadData()
@@ -56,32 +56,32 @@ class BeerListTableViewController: UITableViewController {
     
     // Touch events
     
-    override func canBecomeFirstResponder() -> Bool {
+    override var canBecomeFirstResponder : Bool {
         return true
     }
     
-    override func motionEnded(motion: UIEventSubtype, withEvent event: UIEvent?) {
-        if motion == .MotionShake && firstStore != nil && !firstStore!.taps.isEmpty {
-            firstStore!.taps.sortInPlace({ (a, b) in a.abvPerDollar > b.abvPerDollar })
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        if motion == .motionShake && firstStore != nil && !firstStore!.taps.isEmpty {
+            firstStore!.taps.sort(by: { (a, b) in a.abvPerDollar > b.abvPerDollar })
             tableView.reloadData()
         }
     }
 
     // Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return firstStore != nil ? firstStore!.taps.count : 0
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BeerCell", forIndexPath: indexPath) as! BeerTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "BeerCell", for: indexPath) as! BeerTableViewCell
         
         if firstStore != nil {
-            let beer = firstStore!.taps[indexPath.row]
+            let beer = firstStore!.taps[(indexPath as NSIndexPath).row]
             cell.refreshFrom(beer)
         }
     
@@ -89,29 +89,29 @@ class BeerListTableViewController: UITableViewController {
     }
     
     func promptForNotifications() {
-        let defaults = NSUserDefaults.standardUserDefaults()
+        let defaults = UserDefaults.standard
         let appHasPromptedUser = "promptedForNotifications"
         
-        if defaults.boolForKey(appHasPromptedUser) != true {
+        if defaults.bool(forKey: appHasPromptedUser) != true {
             let title = "New beer notifications"
             let message = "Would you like to be notified when new beers become available? You can disable this in Settings."
-            let alertController = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             
             // Cancel
-            let cancelAction = UIAlertAction(title: "No thanks", style: .Cancel, handler: nil)
+            let cancelAction = UIAlertAction(title: "No thanks", style: .cancel, handler: nil)
             
             alertController.addAction(cancelAction)
             
             // OK
-            let OKAction = UIAlertAction(title: "Notify me 🍻", style: .Default) { (action) in
+            let OKAction = UIAlertAction(title: "Notify me 🍻", style: .default) { (action) in
                 self.nativePromptForNotifications()
             }
             
             alertController.addAction(OKAction)
             
-            self.navigationController!.presentViewController(alertController, animated: true, completion: nil)
+            self.navigationController!.present(alertController, animated: true, completion: nil)
             
-            defaults.setBool(true, forKey: appHasPromptedUser)
+            defaults.set(true, forKey: appHasPromptedUser)
         }
     }
     
@@ -119,23 +119,23 @@ class BeerListTableViewController: UITableViewController {
         OneSignal.defaultClient().registerForPushNotifications()
     }
     
-    private var screenCenter:CGPoint {
+    fileprivate var screenCenter:CGPoint {
         get {
-            let screenDimensions = UIScreen.mainScreen().bounds.size
+            let screenDimensions = UIScreen.main.bounds.size
             let shiftUpwardsOffset = CGFloat(50)
-            return CGPointMake(screenDimensions.width / 2, screenDimensions.height / 2 - shiftUpwardsOffset)
+            return CGPoint(x: screenDimensions.width / 2, y: screenDimensions.height / 2 - shiftUpwardsOffset)
         }
     }
     
-    private func initActivityIndicator() {
+    fileprivate func initActivityIndicator() {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.center = self.screenCenter
         view.addSubview(activityIndicator)
     }
     
-    private func initErrorView() {
+    fileprivate func initErrorView() {
         errorView.center = self.screenCenter
-        errorView.hidden = true
+        errorView.isHidden = true
         view.addSubview(errorView)
     }
 

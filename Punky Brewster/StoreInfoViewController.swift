@@ -8,7 +8,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
     
     @IBOutlet weak var mapView: MKMapView!
     
-    private var alreadyLocatedUser:Bool = false
+    fileprivate var alreadyLocatedUser:Bool = false
     
     var firstStore:Store? {
         return StatusRequest.cachedStores[0]
@@ -24,7 +24,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         requestUserLocation()
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         alreadyLocatedUser = false
         
         if annotations.first != nil {
@@ -73,7 +73,7 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         handleAuthorizationStatusChange(authorizationStatus)
     }
     
-    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+    func mapView(_ mapView: MKMapView, didUpdate userLocation: MKUserLocation) {
         if alreadyLocatedUser {
             return
         }
@@ -82,16 +82,16 @@ class StoreInfoViewController: UIViewController, MKMapViewDelegate, CLLocationMa
         alreadyLocatedUser = true
     }
     
-    func locationManager(manager: CLLocationManager, didChangeAuthorizationStatus status: CLAuthorizationStatus) {
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         handleAuthorizationStatusChange(status)
     }
     
-    private func handleAuthorizationStatusChange(authorizationStatus:CLAuthorizationStatus) {
-        if authorizationStatus == CLAuthorizationStatus.Restricted || authorizationStatus == CLAuthorizationStatus.Denied {
+    fileprivate func handleAuthorizationStatusChange(_ authorizationStatus:CLAuthorizationStatus) {
+        if authorizationStatus == CLAuthorizationStatus.restricted || authorizationStatus == CLAuthorizationStatus.denied {
             return
         }
         
-        if authorizationStatus == CLAuthorizationStatus.NotDetermined {
+        if authorizationStatus == CLAuthorizationStatus.notDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
     }

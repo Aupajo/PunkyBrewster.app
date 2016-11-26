@@ -13,7 +13,7 @@ class ErrorViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         self.navigationItem.setHidesBackButton(true, animated: false)
     }
 }

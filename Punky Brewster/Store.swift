@@ -17,7 +17,7 @@ class Store: NSObject {
     }
     
     
-    func regionWithDistance(distance:CLLocationDistance) -> MKCoordinateRegion {
+    func regionWithDistance(_ distance:CLLocationDistance) -> MKCoordinateRegion {
         return MKCoordinateRegionMakeWithDistance(coordinate, distance, distance)
     }
 }

@@ -1,25 +1,36 @@
 import Foundation
 import MapKit
+fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
+  switch (lhs, rhs) {
+  case let (l?, r?):
+    return l < r
+  case (nil, _?):
+    return true
+  default:
+    return false
+  }
+}
+
 
 class StatusRequest {
-    let URL = NSURL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
+    let URL = Foundation.URL(string: "https://d3fs7ffajw43z3.cloudfront.net/status.json")!
     static var cachedStores:[Store] = [Store()]
     
-    func perform(callback:(stores:[Store], error:NSError?) -> Void) {
-        let task = NSURLSession.sharedSession().dataTaskWithURL(URL) {
+    func perform(_ callback:@escaping (_ stores:[Store], _ error:NSError?) -> Void) {
+        let task = URLSession.shared.dataTask(with: URL, completionHandler: {
             (data, response, error) in
  
             if error != nil {
-                callback(stores: StatusRequest.cachedStores, error: error)
+                callback(StatusRequest.cachedStores, error as NSError?)
                 return
             }
 
-            let httpResponse = response as! NSHTTPURLResponse
+            let httpResponse = response as! HTTPURLResponse
             let statusCode = httpResponse.statusCode
             
             if statusCode != 200 {
                 
-                callback(stores: StatusRequest.cachedStores, error: NSError(domain: "server", code: -1, userInfo: [
+                callback(StatusRequest.cachedStores, NSError(domain: "server", code: -1, userInfo: [
                     "statusCode": statusCode,
                     "response": httpResponse
                 ]))
@@ -27,11 +38,11 @@ class StatusRequest {
             } else {
                 
                 var parseError: NSError? = nil
-                let jsonObject:AnyObject?
+                let jsonObject:Any?
                 
                 do {
-                    jsonObject = try NSJSONSerialization.JSONObjectWithData(data!,
-                                    options: NSJSONReadingOptions(rawValue: 0))
+                    jsonObject = try JSONSerialization.jsonObject(with: data!,
+                                    options: JSONSerialization.ReadingOptions(rawValue: 0))
                 } catch let error as NSError {
                     parseError = error
                     jsonObject = nil
@@ -40,7 +51,7 @@ class StatusRequest {
                 }
                 
                 if parseError != nil {
-                    callback(stores: StatusRequest.cachedStores, error: error)
+                    callback(StatusRequest.cachedStores, error as NSError?)
                     return
                 }
                 
@@ -79,25 +90,25 @@ class StatusRequest {
                                     store.taps.append(Beer.fromJSON(beerData))
                                 }
 
-                                store.taps.sortInPlace { $0.name < $1.name }
+                                store.taps.sort { $0.name < $1.name }
                             }
                             
                             StatusRequest.cachedStores.append(store)
                         }
                         
-                        callback(stores: StatusRequest.cachedStores, error: nil)
+                        callback(StatusRequest.cachedStores, nil)
                         return
                     }
                 }
                 
-                callback(stores: StatusRequest.cachedStores, error: NSError(domain: "server", code: -1, userInfo: [
+                callback(StatusRequest.cachedStores, NSError(domain: "server", code: -1, userInfo: [
                     "message": "Could not parse JSON",
                     "response": httpResponse
                 ]))
             }
             
             
-        }
+        }) 
         
         task.resume()
     }
