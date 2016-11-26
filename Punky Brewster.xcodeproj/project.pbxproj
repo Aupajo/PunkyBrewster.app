@@ -19,20 +19,9 @@
 		C146D9271AE7284B006B9A05 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146D9261AE7284B006B9A05 /* AppDelegate.swift */; };
 		C146D92C1AE7284B006B9A05 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C146D92A1AE7284B006B9A05 /* Main.storyboard */; };
 		C146D92E1AE7284B006B9A05 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C146D92D1AE7284B006B9A05 /* Images.xcassets */; };
-		C146D93D1AE7284B006B9A05 /* Punky_BrewsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */; };
 		C19B93081AFEEDF300053203 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93071AFEEDF300053203 /* Store.swift */; };
 		C19B930A1AFF01FE00053203 /* StoreMapAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		C146D9371AE7284B006B9A05 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = C146D9191AE7284B006B9A05 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = C146D9201AE7284B006B9A05;
-			remoteInfo = "Punky Brewster";
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		02E381693B5C873883A08021 /* Pods_Punky_Brewster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Punky_Brewster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,7 +41,6 @@
 		C146D9261AE7284B006B9A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C146D92B1AE7284B006B9A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C146D92D1AE7284B006B9A05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C146D9361AE7284B006B9A05 /* Punky BrewsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Punky BrewsterTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C146D93B1AE7284B006B9A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punky_BrewsterTests.swift; sourceTree = "<group>"; };
 		C17988D21CE81F980044E6D0 /* PunkyBrewster-Bridging Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PunkyBrewster-Bridging Header.h"; sourceTree = "<group>"; };
@@ -67,13 +55,6 @@
 			files = (
 				C11568901AF62BDF00C3BE57 /* MapKit.framework in Frameworks */,
 				46066E3499D00CAF38DBEB2A /* Pods_Punky_Brewster.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C146D9331AE7284B006B9A05 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,7 +87,6 @@
 			isa = PBXGroup;
 			children = (
 				C146D9211AE7284B006B9A05 /* Punky Brewster.app */,
-				C146D9361AE7284B006B9A05 /* Punky BrewsterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -188,24 +168,6 @@
 			productReference = C146D9211AE7284B006B9A05 /* Punky Brewster.app */;
 			productType = "com.apple.product-type.application";
 		};
-		C146D9351AE7284B006B9A05 /* Punky BrewsterTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C146D9431AE7284B006B9A05 /* Build configuration list for PBXNativeTarget "Punky BrewsterTests" */;
-			buildPhases = (
-				C146D9321AE7284B006B9A05 /* Sources */,
-				C146D9331AE7284B006B9A05 /* Frameworks */,
-				C146D9341AE7284B006B9A05 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C146D9381AE7284B006B9A05 /* PBXTargetDependency */,
-			);
-			name = "Punky BrewsterTests";
-			productName = "Punky BrewsterTests";
-			productReference = C146D9361AE7284B006B9A05 /* Punky BrewsterTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -230,11 +192,6 @@
 							};
 						};
 					};
-					C146D9351AE7284B006B9A05 = {
-						CreatedOnToolsVersion = 6.3;
-						LastSwiftMigration = 0800;
-						TestTargetID = C146D9201AE7284B006B9A05;
-					};
 				};
 			};
 			buildConfigurationList = C146D91C1AE7284B006B9A05 /* Build configuration list for PBXProject "Punky Brewster" */;
@@ -251,7 +208,6 @@
 			projectRoot = "";
 			targets = (
 				C146D9201AE7284B006B9A05 /* Punky Brewster */,
-				C146D9351AE7284B006B9A05 /* Punky BrewsterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -264,13 +220,6 @@
 				C12B25F41CD9DD20005BF44F /* Launch Screen.storyboard in Resources */,
 				C146D92C1AE7284B006B9A05 /* Main.storyboard in Resources */,
 				C146D92E1AE7284B006B9A05 /* Images.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		C146D9341AE7284B006B9A05 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -341,23 +290,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C146D9321AE7284B006B9A05 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				C146D93D1AE7284B006B9A05 /* Punky_BrewsterTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		C146D9381AE7284B006B9A05 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = C146D9201AE7284B006B9A05 /* Punky Brewster */;
-			targetProxy = C146D9371AE7284B006B9A05 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		C146D92A1AE7284B006B9A05 /* Main.storyboard */ = {
@@ -502,44 +435,6 @@
 			};
 			name = Release;
 		};
-		C146D9441AE7284B006B9A05 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Punky BrewsterTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metanation.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Punky Brewster.app/Punky Brewster";
-			};
-			name = Debug;
-		};
-		C146D9451AE7284B006B9A05 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "Punky BrewsterTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.metanation.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Punky Brewster.app/Punky Brewster";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -557,15 +452,6 @@
 			buildConfigurations = (
 				C146D9411AE7284B006B9A05 /* Debug */,
 				C146D9421AE7284B006B9A05 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		C146D9431AE7284B006B9A05 /* Build configuration list for PBXNativeTarget "Punky BrewsterTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				C146D9441AE7284B006B9A05 /* Debug */,
-				C146D9451AE7284B006B9A05 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
