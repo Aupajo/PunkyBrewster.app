@@ -42,8 +42,6 @@
 		C146D9261AE7284B006B9A05 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C146D92B1AE7284B006B9A05 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C146D92D1AE7284B006B9A05 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		C146D93B1AE7284B006B9A05 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Punky_BrewsterTests.swift; sourceTree = "<group>"; };
 		C17988D21CE81F980044E6D0 /* PunkyBrewster-Bridging Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "PunkyBrewster-Bridging Header.h"; sourceTree = "<group>"; };
 		C19B93071AFEEDF300053203 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		C19B93091AFF01FE00053203 /* StoreMapAnnotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreMapAnnotation.swift; sourceTree = "<group>"; };
@@ -77,7 +75,6 @@
 				C115688F1AF62BDF00C3BE57 /* MapKit.framework */,
 				C115688C1AF6261300C3BE57 /* README.md */,
 				C146D9231AE7284B006B9A05 /* Punky Brewster */,
-				C146D9391AE7284B006B9A05 /* Punky BrewsterTests */,
 				C146D9221AE7284B006B9A05 /* Products */,
 				FC00F434C2BE2D414EDAE367 /* Pods */,
 				951A71EFA823413E2B251706 /* Frameworks */,
@@ -117,23 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				C146D9251AE7284B006B9A05 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		C146D9391AE7284B006B9A05 /* Punky BrewsterTests */ = {
-			isa = PBXGroup;
-			children = (
-				C146D93C1AE7284B006B9A05 /* Punky_BrewsterTests.swift */,
-				C146D93A1AE7284B006B9A05 /* Supporting Files */,
-			);
-			path = "Punky BrewsterTests";
-			sourceTree = "<group>";
-		};
-		C146D93A1AE7284B006B9A05 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				C146D93B1AE7284B006B9A05 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
