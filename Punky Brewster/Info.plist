@@ -46,6 +46,8 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright © 2016 Trineo Pty Ltd</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Used to display your location relative to Punky Brewster.</string>
 	<key>UIBackgroundModes</key>
