@@ -46,6 +46,7 @@ class BeerListTableViewController: UITableViewController {
                 self.stores = stores
  
                 if error != nil {
+                    self.stores = []
                     self.errorView.isHidden = false
                 }
                 
